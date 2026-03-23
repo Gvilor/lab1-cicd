@@ -25,3 +25,9 @@ def test_calculate_sum():
     response = client.post("/sum", json={"a": 5, "b": 7})
     assert response.status_code == 200
     assert response.json() == {"result": 12}
+
+
+def test_multiply():
+    response = client.get("/multiply?a=3&b=4")
+    assert response.status_code == 200
+    assert response.json() == {"result": 12}

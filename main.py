@@ -22,3 +22,8 @@ def health_check():
 @app.post("/sum")
 def calculate_sum(numbers: Numbers):
     return {"result": numbers.a + numbers.b}
+
+
+@app.get("/multiply")
+def multiply(a: float, b: float):
+    return {"result": a * b}
