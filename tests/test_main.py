@@ -12,7 +12,7 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello, CI/CD Lab!"}
+    assert response.json() == {"message": "Hello, CI/CD Lab UPDATED"}
 
 
 def test_health_check():
