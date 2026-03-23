@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'dev', url: 'https://github.com/Gvilor/lab1-cicd.git'
-            }
-        }
-
         stage('Setup Python') {
             steps {
                 bat 'python -m venv venv'
