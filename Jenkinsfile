@@ -15,16 +15,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Build successful'
+                bat 'docker build -t lab1-app .'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'if not exist deploy mkdir deploy'
-                bat 'copy main.py deploy\\main.py'
+                bat 'docker stop lab1-container || exit 0'
+                bat 'docker rm lab1-container || exit 0'
+                bat 'docker run -d -p 8000:8000 --name lab1-container lab1-app'
             }
         }
     }
