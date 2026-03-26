@@ -12,7 +12,7 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello, CI/CD Lab demo"}
+    assert response.json() == {"message": "Hello, from docker test1"}
 
 
 def test_health_check():
