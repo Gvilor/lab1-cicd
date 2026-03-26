@@ -11,7 +11,7 @@ class Numbers(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello, CI/CD Lab test1"}
+    return {"message": "Hello, from docker test1"}
 
 
 @app.get("/health")
