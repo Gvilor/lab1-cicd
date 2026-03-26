@@ -4,28 +4,34 @@ pipeline {
     stages {
         stage('Setup Python') {
             steps {
-                bat 'python -m venv venv'
-                bat 'venv\\Scripts\\pip install -r requirements.txt'
+                sh '''
+                python3 -m venv venv
+                . venv/bin/activate
+                pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'venv\\Scripts\\pytest'
+                sh '''
+                . venv/bin/activate
+                pytest
+                '''
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t lab1-app .'
+                sh 'docker build --pull=false -t lab2-app .'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'docker stop lab1-container || exit 0'
-                bat 'docker rm lab1-container || exit 0'
-                bat 'docker run -d -p 8000:8000 --name lab1-container lab1-app'
+                sh 'docker stop lab2-container || true'
+                sh 'docker rm lab2-container || true'
+                sh 'docker run -d -p 8000:8000 --name lab2-container lab2-app'
             }
         }
     }
