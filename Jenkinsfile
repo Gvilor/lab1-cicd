@@ -23,15 +23,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build --pull=false -t lab2-app .'
+                sh '/usr/local/bin/docker build --pull=false -t lab2-app .'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker stop lab2-container || true'
-                sh 'docker rm lab2-container || true'
-                sh 'docker run -d -p 8000:8000 --name lab2-container lab2-app'
+                sh '/usr/local/bin/docker stop lab2-container || true'
+                sh '/usr/local/bin/docker rm lab2-container || true'
+                sh '/usr/local/bin/docker run -d -p 8000:8000 --name lab2-container lab2-app'
             }
         }
     }
